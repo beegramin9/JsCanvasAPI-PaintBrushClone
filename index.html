@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="./public/favicon.ico">
+    <title>Paintbrush Clone</title>
+</head>
+<body>
+    <div class="introduction">
+        <h1>Paint Your Dream!</h1>
+    </div>
+    <!-- JS와 ID를 맞추고, CSS와 class를 맞출 것 -->
+    <!-- canvas는 context를 가진 HTML 요소
+    context는 canvas 안의 픽셀이라고 생각하면 됨 -->
+    <!-- 리셋버튼 넣는거 어때? -->
+    <section class="paint-box">
+        <canvas id="jsCanvas" class="canvas">
+        </canvas>
+
+        <div class="controls">
+            <!-- Range Input: 붓이 얼마나 큰지 작은지 -->
+            <div class="controls__range">
+                <div class="controls__range__number">
+                    <span>0.1</span>
+                    <div class="controls__range__text">Brush Size</div>
+                    <span>5.0</span>
+                </div>
+                <!-- input의 type을 range로 주면 range 바가 자동으로 생김! 
+                    min,max. value는 기본값이 됨, which makes sense. value는 input의 초기값이니까 -->
+                    <input type="range" id="jsRange" min="0.1" max="5.0" value="2.5" step="0.1">
+            </div>
+            <!-- 버튼 2개 만들기 -->
+            <div class="controls__btns">
+                <!-- 모드선택 버튼 -->
+                <button id="jsMode">Change to <br> Filling
+                </button>
+                <!-- 알람하나 설정해서 서로 반대인게 나오도록 할 수 있나?
+                그냥 Change to 하면 되지 -->
+            
+                <!-- 저장 버튼 -->
+                <button id="jsSave">Save
+                </button>
+                <button id="jsErase">Erase
+                </button>
+                <button id="jsReset">Reset
+                </button>
+            </div>
+        </div>        
+                
+                
+        <div class="controls__colors" id="jsColors">
+            <!-- 색깔이 다 다르니까, 만약 CSS로 한다면
+            color1, color2... 총 9개를 만들어야함, 그래서 그냥 하드코딩 -->
+            <div class="controls__color jsColor" style="background-color:#2c2c2c ;"></div>
+            <div class="controls__color jsColor" style="background-color:white ;"></div>
+            <div class="controls__color jsColor" style="background-color:#FF3B30;"></div>
+            <div class="controls__color jsColor" style="background-color:#FF9500;"></div>
+            <div class="controls__color jsColor" style="background-color:#FFCC00;"></div>
+            <div class="controls__color jsColor" style="background-color:#4CD963;"></div>
+            <div class="controls__color jsColor" style="background-color:#5AC8FA;"></div>
+            <div class="controls__color jsColor" style="background-color:#0579FF;"></div>
+            <div class="controls__color jsColor" style="background-color:#5856D6;"></div>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+    <script src="background.js"></script>
+</body>
+</html>

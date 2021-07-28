@@ -1,0 +1,301 @@
+@import "reset.css";
+/* @Media는 변경하고싶은 대상 밑에 써져있어야 한다. */
+
+body {
+  background-color: #f6f9fc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-size: cover;
+  /* min-width: 100%;
+  min-height: 100%; */
+  margin: 0;
+  padding: 0;
+}
+
+/* Introduction */
+.introduction {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(
+    121.57deg,
+    #ffffff 18.77%,
+    rgba(255, 255, 255, 0.88) 60.15%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.paint-box {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  grid-gap: 1.5em;
+  grid-template-areas:
+    "canvas control"
+    "canvas color";
+}
+
+.canvas {
+  grid-area: canvas;
+  width: 650px;
+  height: 650px;
+  background-color: white;
+  border-radius: 15px;
+  /* 그림자 추가 */
+  box-shadow: 0 13px 27px -5px rgba(0, 0, 0, 0.65),
+    0 8px 16px -8px rgba(0, 0, 0, 0.6), 0 -6px 16px -6px rgba(0, 0, 0, 0.625);
+  padding: 5px;
+}
+
+/* 컨트롤판 */
+.controls {
+  grid-area: control;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  position: relative;
+  bottom: 4em;
+}
+
+/* Input range indicator number */
+.controls__range__number {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(
+    121.57deg,
+    rgba(255, 255, 255, 0.66) 60.15%,
+    #ffffff 18.77%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+/* Range Input Customizing */
+.controls__range input[type="range"] {
+  -webkit-appearance: none;
+  cursor: pointer;
+  box-shadow: 0 13px 27px -5px rgba(0, 0, 0, 0.65),
+    0 8px 16px -8px rgba(0, 0, 0, 0.6), 0 -6px 16px -6px rgba(0, 0, 0, 0.625);
+  background: white;
+  border-radius: 20px;
+}
+.controls__range input[type="range"]::-webkit-slider-thumb {
+  border: 1px solid red;
+  height: 15px;
+  width: 15px;
+  border-radius: 7.5px;
+  background: rgba(158, 26, 32, 0.4);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -2.5px;
+}
+.controls__range input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 7.5px;
+  cursor: pointer;
+  background: white;
+  border-radius: 3.75px;
+}
+
+.controls__range input[type="range"]:focus {
+  outline: none;
+}
+
+.controls__btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  grid-gap: 0.5em;
+  margin-bottom: 1em;
+  position: relative;
+}
+
+/* controls__btns 클래스 밑에 있는 모든 button 태그들에 대해 */
+button {
+  /* 버튼, 인풋 기본모양이 싫다면 초기화하는 기능 */
+  all: unset;
+  cursor: pointer;
+  background-color: white;
+  /* 패딩 갑옷 생각하면 됨. 안으로 들어가잖아? */
+  padding: 5px 0px;
+  width: 6em;
+  text-align: center;
+  border-radius: 5px;
+  /* 경계선 */
+  box-shadow: 0 13px 27px -5px rgba(0, 0, 0, 0.65),
+    0 8px 16px -8px rgba(0, 0, 0, 0.6), 0 -6px 16px -6px rgba(0, 0, 0, 0.625);
+
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  /* rgba의 a는 투명도 */
+  color: rgba(0, 0, 0, 0.7);
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 12px;
+  min-height: 2em;
+}
+
+/* :active 버튼처럼 누르는 효과 주기. 해당 태그에 딱 붙여써야 함 */
+button:active {
+  /* 가로, 세로 모두 0.98배 확대 */
+  transform: scale(0.98);
+}
+
+/* 아 이게 두 클래스를 한 번에 쓸 수 있는게 아니라
+자손 선택자처럼 controls 밑에 있는 controls__colors에만 적용되는 것 */
+.controls__colors {
+  grid-area: color;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  grid-gap: 3px;
+  position: relative;
+  bottom: 5em;
+}
+
+.controls__color {
+  width: 3em;
+  height: 3em;
+  /* 정확한 원으로 만들고 싶으면 width의 절반만큼 주면 됨. 즉 25 */
+  border-radius: 1.5em;
+  cursor: pointer;
+  box-shadow: 0 13px 27px -5px rgba(0, 0, 0, 0.65),
+    0 8px 16px -8px rgba(0, 0, 0, 0.6), 0 -6px 16px -6px rgba(0, 0, 0, 0.625);
+}
+.controls__color:active {
+  transform: scale(0.98);
+  -ms-transform: scale(0.98);
+  -webkit-transform: scale(0.98);
+}
+
+.controls .controls__range {
+  margin-bottom: 20px;
+}
+
+/* 배경사진 
+캔버스를 반투명하게 해도 안이상하려나?*/
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.bgImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* 사진이 글 뒤로 가게끔 */
+  z-index: -1;
+  /* 글 먼저 뜨고 사진이 나중에 나오는 게 보기 싫다
+    그래서 사진이 0.5 간격을 두고 그라데이션 하게 */
+  animation: fadein 1s linear;
+}
+
+/* Alert, Current Mode */
+/* 알람 끄기 안됨 , 버튼에 이벤트리스너 넣어야함... ㅅㅂ*/
+
+/* LG그램처럼 height 픽셀이 큰 경우 */
+@media (max-height: 1200px) {
+  body {
+    margin-top: 2em;
+  }
+}
+
+/* 반응형: 위로 올려서 비율 맞추기 */
+@media (max-width: 950px) {
+  /* control판 전체를 살짝 올려서 비용 맞추기 */
+  .controls {
+    position: relative;
+    bottom: 6em;
+  }
+  /* control 버튼 세로로 세우기*/
+  .controls__btns {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    margin: 0;
+  }
+
+  /* 색깔버튼도 살짝 올리기 */
+  .controls__colors {
+    position: relative;
+    bottom: 6em;
+  }
+}
+
+@media (max-width: 840px) {
+  .canvas {
+    justify-self: center;
+    width: 500px;
+    height: 500px;
+  }
+  /* 전체 Canvas+ Control 세로배치 */
+  .paint-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Control 가로배치 */
+  .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  /* control 버튼 세로로 세우기*/
+  .controls__btns {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+  }
+
+  /* 색깔버튼도 살짝 올리기 */
+  .controls__colors {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    margin: 0 auto;
+  }
+  .introduction {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+  .canvas {
+    margin: 0 auto;
+    width: 320px;
+    height: 320px;
+  }
+  .controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .controls__color {
+    width: 2em;
+    height: 2em;
+    /* 정확한 원으로 만들고 싶으면 width의 절반만큼 주면 됨. 즉 25 */
+    border-radius: 1em;
+  }
+}
