@@ -5,11 +5,17 @@ const ctx = canvas.getContext('2d')
 이미지 메소드가 제공됨 */
 
 
+canvas.width = 650;
+canvas.height = 650;
+
+// If you want to have the visual size be the same as the pixel size,\
+// never set the styles, only the attributes.
 
 /* css로 만든 햐얀 네모는 그냥 디자인일 뿐이고
 실제 HTML 요소를 위한 크기도 정해줘야 한다.(= 픽셀을 잡는 과정)
 이렇게 650으로 해놓으면 반응형으로 em으로 잡아도 될려나..? */
-let screenWidth = window.innerWidth;
+// 이거 리사이즈 때마다 해줘야 함 + 맨 처음이랑!
+const screenWidth = window.innerWidth;
 if (screenWidth > 840) {
     canvas.width = 650;
     canvas.height = 650;
@@ -20,6 +26,22 @@ if (screenWidth > 840) {
     canvas.width = 320;
     canvas.height = 320;
 }
+// height 속성이나 width 속성을 재설정하면, 기존 canvas 그림 전부 사라짐
+
+window.addEventListener('resize', () => {
+    if (screenWidth > 840) {
+        canvas.width = 650;
+        canvas.height = 650;
+    } else if (screenWidth > 520) {
+        canvas.width = 500;
+        canvas.height = 500;
+    } else {
+        canvas.width = 320;
+        canvas.height = 320;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+});
 
 
 // canvas 기본색 하얀색으로
