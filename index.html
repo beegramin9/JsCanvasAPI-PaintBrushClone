@@ -4,10 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="alert.css">
     <link rel="icon" href="./public/favicon.ico">
+    <script src="https://kit.fontawesome.com/1dd0872740.js" crossorigin="anonymous"></script>
     <title>Paintbrush Clone</title>
 </head>
 <body>
+    <!-- Alert -->
+    <div class="alert">
+        <div class="alert__title">
+            <span class="fas fa-exclamation-circle"></span>
+            Warning
+        </div>
+        <div class="alert__close">
+            <div class="alert__close__grid">
+                <button class="button alert__close__button">
+                    <span class="fas fa-times"></span>
+                </button>
+            </div>
+        </div>
+        <div class="alert__message">
+            When resized, everything will be gone!
+        </div>
+    </div>
+
+
     <div class="introduction">
         <h1>Paint Your Dream!</h1>
     </div>
@@ -65,7 +86,8 @@
         </div>
     </section>
 
-    <script src="app.js"></script>
-    <script src="background.js"></script>
+    <script type="text/javascript" src="background.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="alert.js"></script>
 </body>
 </html>

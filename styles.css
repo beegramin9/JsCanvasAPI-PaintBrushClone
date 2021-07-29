@@ -128,6 +128,7 @@ button {
   /* 패딩 갑옷 생각하면 됨. 안으로 들어가잖아? */
   padding: 5px 0px;
   width: 6em;
+  height: 2em;
   text-align: center;
   border-radius: 5px;
   /* 경계선 */
@@ -140,7 +141,6 @@ button {
   text-transform: uppercase;
   font-weight: 800;
   font-size: 12px;
-  min-height: 2em;
 }
 
 /* :active 버튼처럼 누르는 효과 주기. 해당 태그에 딱 붙여써야 함 */

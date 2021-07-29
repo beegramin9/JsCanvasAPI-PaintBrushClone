@@ -241,3 +241,4 @@ if (canvas) {
     /* 마우스 오른쪽 클릭해서 나오는 게 contextmenu */
     canvas.addEventListener('contextmenu',handleCM)
 }
+
