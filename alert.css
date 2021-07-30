@@ -6,7 +6,7 @@
   background: rgba(255, 219, 155, 0.4);
   padding: 1rem 2rem;
   width: 15vw;
-  height: 9vh;
+  min-height: 9vh;
   border-radius: 5px;
   border-left: 4px solid rgba(255, 165, 2, 0.4);
 }
@@ -42,8 +42,9 @@
   padding: 5px;
   position: relative;
   top: 2.5px;
-  box-shadow: 0 6px 13px -3px rgba(0, 0, 0, 0.65),
-    0 4px 8px -4px rgba(0, 0, 0, 0.6), 0 -3px 8px -3px rgba(0, 0, 0, 0.625);
+  color: rgba(183, 16, 14, 0.55);
+  box-shadow: 0 12px 26px -6px rgba(0, 0, 0, 0.3),
+    0 8px 16px -8px rgba(0, 0, 0, 0.2), 0 -6px 16px -6px rgba(0, 0, 0, 0.3);
 }
 
 .alert__close__button:hover {
