@@ -212,6 +212,10 @@ function stopPainting() {
 /* 리셋하기 */
 function handleResetClick() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    /* 리셋을 눌러서 캔버스가 하얀색으로 바꼈는데
+    fillcolor를 하얀색으로 바뀌지 않아서 save가 안된거야 */
+    /* 이것때문에 버그가 있었음 */
+    ctx.fillStyle = 'white';
     ctx.beginPath();
 }
 
@@ -223,9 +227,10 @@ if (resetBtn) {
 
 /* 지우기 */
 function handleEraseClick() {
-
+    /*  */
     console.log('캔버스색',ctx.fillStyle);
     console.log('원래 선 색, 캔버스색으로 바꾸기 전',ctx.strokeStyle);
+    /*  */
     /* 쓰는 색깔이 strokeStyle이 아니라 다른건가본데? */
     ctx.strokeStyle = ctx.fillStyle
     /* 지우개 크기는 Brush를 따라감 */
