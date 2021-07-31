@@ -252,25 +252,42 @@ function handleTouchClick(event) {
         console.log('드로잉');
     }
 }
+/*  if (screenWidth > 840) {
+        canvas.width = 650;
+        canvas.height = 650;
+    } else if (screenWidth > 520) {
+        canvas.width = 500;
+        canvas.height = 500;
+    } else {
+        canvas.width = 320;
+        canvas.height = 320;
+    } */
 
-// function onMouseMove(event) {
-//     const x = event.offsetX;
-//     const y = event.offsetY;
-//     if (!painting) {
-//         ctx.beginPath()
-//         ctx.moveTo(x,y)
-//     } else {
-//        ctx.lineTo(x,y)
-//        ctx.stroke()
-//     }
-// }
+/* 숫자를 잘보면 된다. 
+width 420일때 x좌표는 307, 185에서
+50빼서 257, 135가 딱 맞았다.
+
+height가 달라지니까 width만 같이 해주면 되나?
+
+height는 상관없는것처럼보인다. width맞춰주면 됨
+아니면 * width / height를 해주면 될듯 */
 
 function handleTouchMove(event) {
     event.preventDefault();
     var touches = event.changedTouches;
     console.log(touches[0]);
     /* onMouseMove랑 같은건데. 여기서 x,y좌표를 주면 되거든...? */
-    ctx.lineTo(touches[0].clientX, touches[0].clientY);
+    /* sm일땐 6아래로 가면 왼쪽에 그려지고, 8 아래로 가면 아래쪽에 그려짐 */
+
+    // if (screenWidth > 840) {
+    //     ctx.lineTo(touches[0].pageX - 50, touches[0].pageY - 120);
+    // } else if (screenWidth > 520) {
+    //     ctx.lineTo(touches[0].pageX - 60, touches[0].pageY - 100);
+    // } else {
+    //     ctx.lineTo(touches[0].pageX -50 , touches[0].pageY - 50);
+    // }
+    ctx.lineTo(touches[0].pageX *.6 , touches[0].pageY *.75);
+
     /* clientX, clientY, pageX, pageY */
     ctx.stroke();
 }
