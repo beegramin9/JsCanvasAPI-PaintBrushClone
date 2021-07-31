@@ -125,6 +125,7 @@ if (mode) {
 
 /* Filling 모드에서 canvas를 클릭하면 채워주기를 바람 */
 function handleCanvasClick() {
+    console.log('handleCanvasClick: clicked');
     /* filling일때만 실행하게. 아니면 그대로 drawing할 수 있도록 */
     if (filling) {
         ctx.fillRect(0,0,canvas.width,canvas.height)
@@ -137,7 +138,6 @@ function onMouseMove(event) {
     canvas의 좌표만 얻고 싶다면 offsetX, offsetY */
     const x = event.offsetX;
     const y = event.offsetY;
-    
     /* 캔버스 위를 클릭하는 순간을 인지하게 하고
     클릭했을 때 페인팅을 시작해야 함 */
 
@@ -157,10 +157,19 @@ function onMouseMove(event) {
         클릭 시작점에서 현재 마우스 x,y까지 선을 그린다.
         => 클릭하고 있을 때 내내 발생하겠지. 시작과 끝선이 아니란 말씀
         */
-        ctx.lineTo(x,y)
-        /* 실제로 칠함 */
-        ctx.stroke()
+       ctx.lineTo(x,y)
+       /* 실제로 칠함 */
+       ctx.stroke()
     }
+
+    /* 마우스일때
+    클릭안하고 옮겨다니기만해도 클릭안하고 움직이는게 됨
+    클릭을 해야 stroke()가 실행됨
+    터치일때 
+    실제로 터치디바이스일땐, 클릭 안할때를 알 필요가 없잖아? 
+    클릭 안할때는 이벤트리스너도 실행이 안됨
+    클릭하면 stroke가 실행되는게 아니라 !painting일때의 moveTo(x,y)가 실행됨
+    */
 }
 
 /* 저장 */
@@ -228,6 +237,53 @@ if (eraseBtn) {
     eraseBtn.addEventListener('click', handleEraseClick)
 }
 
+/* startPainting가 뭘까? */
+
+/* 터치 추가 */
+function handleTouchClick(event) {
+    console.log(event);
+    event.preventDefault();
+    if ( filling ) {
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        console.log('필링');
+    } else {
+        ctx.beginPath();
+        startPainting();
+        console.log('드로잉');
+    }
+}
+
+// function onMouseMove(event) {
+//     const x = event.offsetX;
+//     const y = event.offsetY;
+//     if (!painting) {
+//         ctx.beginPath()
+//         ctx.moveTo(x,y)
+//     } else {
+//        ctx.lineTo(x,y)
+//        ctx.stroke()
+//     }
+// }
+
+function handleTouchMove(event) {
+    event.preventDefault();
+    var touches = event.changedTouches;
+    console.log(touches[0]);
+    /* onMouseMove랑 같은건데. 여기서 x,y좌표를 주면 되거든...? */
+    ctx.lineTo(touches[0].clientX, touches[0].clientY);
+    /* clientX, clientY, pageX, pageY */
+    ctx.stroke();
+}
+
+function handleTouchEnd(event) {
+    event.preventDefault();
+    ctx.closePath();
+    stopPainting();
+    console.log('handleTouchEnd');
+}
+
+
+/* 여기에 터치를 추가해야 되네요? ... */
 if (canvas) {
     canvas.addEventListener('mousemove',onMouseMove)
     /* 클릭했을 때 이벤트: mousedown */
@@ -240,5 +296,27 @@ if (canvas) {
     canvas.addEventListener('click',handleCanvasClick)
     /* 마우스 오른쪽 클릭해서 나오는 게 contextmenu */
     canvas.addEventListener('contextmenu',handleCM)
+
+    // 마우스는
+    /* 안움직이다(mousemove) 누르고(mousedown) 그때부터 쭈욱 그리다가
+    떼면(mouseup) 끝난다. 마우스 왼쪽은 터치에서 오래 누르면 자동으로 되니까
+    touch에서 다시 할 필요가 없다. click은 터치에서 touchstart랑 같다 */
+    // 터치에서는
+    /* click이 touchstart랑 같다
+    안움직이면 손가락을 아예 대지 않은 것이기때문에 mousemove가 필요없다
+    손 댔을 때touchmove만 그린다. touchend는 손을 뗐을 때이다 */
+    canvas.addEventListener("touchstart", handleTouchClick, false);
+    canvas.addEventListener('touchmove',handleTouchMove, false)
+    canvas.addEventListener("touchend", handleTouchEnd, false);
+
+
+    /* touchcancel은 캔버스 밖으로 나가는게 아니라 
+    아예 스크린 밖으로 나갈때를 위한 것 */
+
+    // when the user puts a finger on the screen.
+    // == the player touches the screen but doesn't move
+    // when they move the finger on the screen while touching it
+    // when the user stops touching the screen
+    // when a touch is cancelled, for example when the user moves their finger outside of the screen.
 }
 
