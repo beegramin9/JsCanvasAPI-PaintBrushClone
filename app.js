@@ -274,7 +274,7 @@ height는 상관없는것처럼보인다. width맞춰주면 됨
 
 function handleTouchMove(event) {
     event.preventDefault();
-    var touches = event.changedTouches;
+    const touches = event.changedTouches;
     console.log(touches[0]);
     /* onMouseMove랑 같은건데. 여기서 x,y좌표를 주면 되거든...? */
     /* sm일땐 6아래로 가면 왼쪽에 그려지고, 8 아래로 가면 아래쪽에 그려짐 */
@@ -286,10 +286,11 @@ function handleTouchMove(event) {
     // } else {
     //     ctx.lineTo(touches[0].pageX -50 , touches[0].pageY - 50);
     // }
-    ctx.lineTo(touches[0].pageX *.6 , touches[0].pageY *.75);
-
-    /* clientX, clientY, pageX, pageY */
-    ctx.stroke();
+    if (!filling) {
+        ctx.lineTo(touches[0].pageX , touches[0].pageY );
+        /* clientX, clientY, pageX, pageY */
+        ctx.stroke();
+    }
 }
 
 function handleTouchEnd(event) {
