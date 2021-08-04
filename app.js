@@ -278,6 +278,10 @@ height는 상관없는것처럼보인다. width맞춰주면 됨
 아니면 * width / height를 해주면 될듯 */
 
 function handleTouchMove(event) {
+    // console.log(event);
+
+    // console.log(event.srcElement.offsetLeft, event.srcElement.offsetTop); 
+
     event.preventDefault();
     const touches = event.changedTouches;
     console.log(touches[0]);
@@ -291,8 +295,20 @@ function handleTouchMove(event) {
     // } else {
     //     ctx.lineTo(touches[0].pageX -50 , touches[0].pageY - 50);
     // }
+
+    // 전체 가로 길이를 안다면...?
+    const totalScreenWidth = document.querySelector('body').offsetWidth ;
+    const totalCanvasSectionWidth = document.querySelector('.paint-box').offsetWidth ;
+    // console.log(totalScreenWidth, totalCanvasSectionWidth);
+    const marginOnLeftSide = (totalScreenWidth - totalCanvasSectionWidth) / 2;
+    
+    const totalScreenHeight = document.querySelector('body').offsetHeight ;
+    // 높이는 위에서부터만 재면 되니까, introduction의 크기만 알면 된다.
+    const totalCanvasSectionHeight = document.querySelector('.paint-box').offsetHeight
+    const marginOnTopSide = totalScreenHeight - totalCanvasSectionHeight
+
     if (!filling) {
-        ctx.lineTo(touches[0].pageX , touches[0].pageY );
+        ctx.lineTo(touches[0].pageX-marginOnLeftSide , touches[0].pageY - marginOnTopSide);
         /* clientX, clientY, pageX, pageY */
         ctx.stroke();
     }
