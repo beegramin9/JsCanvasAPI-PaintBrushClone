@@ -1,3 +1,5 @@
+![PaintBrush](https://user-images.githubusercontent.com/58083434/130402852-f8f8dd81-9118-4658-ad5d-43e22f127afa.gif)
+
 # Latest Release (2021/06/28)
 ![Generic badge](https://img.shields.io/badge/build-passing-green.svg)
 
