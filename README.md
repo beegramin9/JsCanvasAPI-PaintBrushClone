@@ -1,6 +1,6 @@
 ## Project Status
 ![Generic badge](https://img.shields.io/badge/build-passing-green.svg)
-<br/> [Github pages link](https://github.com/beegramin9/HCJ-Nomad-PaintBrushClone). try!
+<br/> [Github pages link](https://beegramin9.github.io/HCJ-Nomad-PaintBrushClone/). try!
 
 ## Overview
 ![PaintBrush](https://user-images.githubusercontent.com/58083434/130402852-f8f8dd81-9118-4658-ad5d-43e22f127afa.gif)
