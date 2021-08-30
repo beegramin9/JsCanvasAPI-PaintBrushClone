@@ -45,10 +45,10 @@ canvas.addEventListener("touchend", handleTouchEnd); // 터치 이벤트 종료
 ```
 
 
-- mouse, touch 그리기 로직 <br/>
+- mousemove, touchmove<br/>
 > (/app.js /) <br/>
-> 마우스는 움직이지 않다가(mousemove) 클릭하고(mousedown) 그때부터 그리다가 떼면(mouseup) 끝난다. <br/>
-> 터치는 움직이지 않으면 손가락을 아예 대지 않은 것이기에 painting true/false 여부에 관계없이 그린다
+> 마우스는 움직이지 않다가(mousemove) 클릭하고(mousedown) 그때부터 그리다가 떼면(mouseup) 끝난다. painting true/false 여부가 필요합니다. <br/>
+> 터치는 움직이지 않으면 손가락을 아예 대지 않은 것이기에 painting true/false 여부에 관계없이 그린다.
 ```js
 // mousemove
 function onMouseMove(event) {
